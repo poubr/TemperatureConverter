@@ -1,19 +1,18 @@
-﻿using System;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
 class TemperatureConverter {
     public static void Main () {
-        string input;
+        string? input;
         string pattern = @"^(\d|-|\.)[.\d]* [CFK]$";
         do {
             Console.WriteLine("Please enter a temperature value and its unit of measurement (F, C, or K) separated by a space, or 'exit' to quit the program.");
             input = Console.ReadLine();
-            if (input.Equals("exit"))
+            if (input is not null && input.Equals("exit"))
             {
                 Console.WriteLine("Thank you for using this converter! Goodbye!");
                 break;
             }
-            else if (Regex.IsMatch(input, pattern))
+            else if (input is not null && Regex.IsMatch(input, pattern))
             {
                 ConvertTemperature(input);
             } 
